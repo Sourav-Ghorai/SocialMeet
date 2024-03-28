@@ -11,6 +11,7 @@ import colors from "colors";
 import { fileURLToPath } from "url";
 import { registerController } from './controllers/authController.js';
 import authRoute from "./routes/authRoute.js";
+import userRoute from "./routes/userRoute.js"
 
 dotenv.config();
 const app = express();
@@ -45,6 +46,7 @@ app.post("/auth/register", upload.single("picture"), registerController)
 
 //Routes
 app.use("/auth", authRoute);
+app.use("/users", userRoute);
 
 // Mongoose setup
 const PORT = process.env.PORT || 6001;

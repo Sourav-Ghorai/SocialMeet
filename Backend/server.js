@@ -9,6 +9,8 @@ import morgan from "morgan";
 import path from "path";
 import colors from "colors";
 import { fileURLToPath } from "url";
+import { registerController } from './controllers/authController.js';
+import authRoute from "./routes/authRoute.js";
 
 dotenv.config();
 const app = express();
@@ -37,6 +39,13 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
+//Routes with files
+//Register route
+app.post("/register", upload.single("picture"), registerController)
+
+//Routes
+// app.use("/auth", authRoute);
+
 // Mongoose setup
 const PORT = process.env.PORT || 6001;
 mongoose
@@ -46,4 +55,4 @@ mongoose
       console.log(`Server is running at port: ${PORT}`.bgCyan.black)
     );
   })
-  .catch((error) => console.log(`${error} did not connect`));
+  .catch((error) => console.log(`${error} did not connect`.bgRed.white));

@@ -40,8 +40,12 @@ function Navbar() {
   const primaryLight = theme.palette.primary.light;
   const alt = theme.palette.background.alt;
 
-  //   const fullName = `${user.firstName} ${user.lastName}`;
-  const fullName = "Sourav Ghorai";
+  let fullName = "";
+  if (user) {
+    fullName = `${user.firstName} ${user.lastName}`;
+  } else {
+    fullName = "Hello Guest";
+  }
 
   return (
     <FlexBetween padding="0.9rem 5%" backgroundColor={alt}>
@@ -180,7 +184,7 @@ function Navbar() {
                 <MenuItem value={fullName}>
                   <Typography>{fullName}</Typography>
                 </MenuItem>
-                <MenuItem onClick={() => dispatch(setLogout)}>Logout</MenuItem>
+                <MenuItem onClick={() => dispatch(setLogout())}>Logout</MenuItem>
               </Select>
             </FormControl>
           </FlexBetween>

@@ -18,8 +18,8 @@ export const createPostController = async (req, res) => {
       comments: [],
     }).save();
 
-    const allPost = await postModel.find();
-    res.status(201).json(allPost);
+    const posts = await postModel.find();
+    res.status(201).send({posts});
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

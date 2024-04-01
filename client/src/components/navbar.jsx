@@ -48,7 +48,14 @@ function Navbar() {
   }
 
   return (
-    <FlexBetween padding="0.9rem 5%" backgroundColor={alt}>
+    <FlexBetween
+      padding="0.9rem 5%"
+      backgroundColor={alt}
+      width="100%"
+      position="fixed"
+      zIndex="99"
+      
+    >
       <FlexBetween gap="1.75rem">
         <Typography
           fontWeight="bold"

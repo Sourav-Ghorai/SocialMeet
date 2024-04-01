@@ -58,7 +58,7 @@ function UserWidget({ userId, picturePath }) {
   } = user;
 
   return (
-    <WidgetWrapper>
+    <WidgetWrapper position="sticky" top="5.2rem">
       {/* First Row  */}
       <FlexBetween
         gap="0.5rem"

@@ -14,20 +14,23 @@ function HomePage() {
       <Navbar />
       <Box
         width="100%"
-        padding="2rem 5%"
+        padding="7rem 5% 2rem 5%"
         display={isNonMobileScreens ? "flex" : "block"}
         gap="0.5rem"
         justifyContent="space-between"
       >
-        <Box flexBasis={isNonMobileScreens ? "26%" : undefined}>
+        <Box
+          flexBasis={isNonMobileScreens ? "26%" : undefined}
+         
+        >
           <UserWidget userId={_id} picturePath={picturePath} />
         </Box>
         <Box
           flexBasis={isNonMobileScreens ? "42%" : undefined}
           mt={isNonMobileScreens ? undefined : "2rem"}
         >
-         <MyPostWidget picturePath={picturePath}/>
-         <PostsWidget userId={_id}/>
+          <MyPostWidget picturePath={picturePath} />
+          <PostsWidget userId={_id} />
         </Box>
         {isNonMobileScreens && <Box flexBasis="26%"></Box>}
       </Box>

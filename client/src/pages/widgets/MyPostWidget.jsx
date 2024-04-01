@@ -60,6 +60,7 @@ function MyPostWidget({ picturePath }) {
     const posts = data.posts;
     dispatch(setPosts({ posts }));
     setDescription("");
+    setIsImage(false);
     setImage(null);
   };
 

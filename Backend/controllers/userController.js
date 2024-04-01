@@ -5,7 +5,10 @@ export const getUserController = async (req, res) => {
   try {
     const { id } = req.params;
     const user = await userModel.findById(id);
-    res.status(200).json(user);
+    res.status(200).send({
+      sucess: true,
+      user
+    });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

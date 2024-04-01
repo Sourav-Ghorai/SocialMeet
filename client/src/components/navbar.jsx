@@ -113,7 +113,7 @@ function Navbar() {
               <MenuItem value={fullName}>
                 <Typography>{fullName}</Typography>
               </MenuItem>
-              <MenuItem onClick={() => dispatch(setLogout)}>Logout</MenuItem>
+              <MenuItem onClick={() => dispatch(setLogout())}>Logout</MenuItem>
             </Select>
           </FormControl>
         </FlexBetween>
@@ -184,7 +184,9 @@ function Navbar() {
                 <MenuItem value={fullName}>
                   <Typography>{fullName}</Typography>
                 </MenuItem>
-                <MenuItem onClick={() => dispatch(setLogout())}>Logout</MenuItem>
+                <MenuItem onClick={() => dispatch(setLogout())}>
+                  Logout
+                </MenuItem>
               </Select>
             </FormControl>
           </FlexBetween>

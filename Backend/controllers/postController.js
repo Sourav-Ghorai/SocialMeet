@@ -28,8 +28,8 @@ export const createPostController = async (req, res) => {
 //Get all the posts
 export const getAllPosts = async (req, res) => {
   try {
-    const allPost = await postModel.find();
-    res.status(201).json(allPost);
+    const posts = await postModel.find();
+    res.status(201).send({posts});
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -39,8 +39,8 @@ export const getAllPosts = async (req, res) => {
 export const getUserPosts = async (req, res) => {
   try {
     const { userId } = req.body;
-    const post = await postModel.find({ userId });
-    res.status(201).json(post);
+    const posts = await postModel.find({ userId });
+    res.status(201).send({posts});
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

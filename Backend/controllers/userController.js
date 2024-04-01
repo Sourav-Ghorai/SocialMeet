@@ -60,7 +60,7 @@ export const modifyFriendsController = async (req, res) => {
         return { _id, firstName, lastName, occupation, location, picturePath };
       }
     );
-    res.status(200).json(formattedFriends);
+    res.status(200).send({formattedFriends});
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

@@ -25,15 +25,16 @@ function Friend({ friendId, name, subtitle, userPicturePath }) {
 
   const patchFriend = async () => {
     const { data } = await axios.patch(
-      `${process.env.REACT_APP_API}/users/${_id}/${friendId}`,
+      `${process.env.REACT_APP_API}/users/${_id}/${friendId}`, null,
       {
         headers: {
           Authorization: token,
         },
       }
     );
+    dispatch(setFriends({ friends: data.formattedFriends }));
   };
-  dispatch(setFriends({ friends: data.formattedFriends }));
+
   return (
     <FlexBetween>
       <FlexBetween gap="1rem">

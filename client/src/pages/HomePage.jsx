@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import UserWidget from "./widgets/UserWidget";
 import MyPostWidget from "./widgets/MyPostWidget";
 import PostsWidget from "./widgets/PostsWidget";
+import AdvertWidget from "./widgets/AdvertWidget";
 
 function HomePage() {
   const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
@@ -32,12 +33,12 @@ function HomePage() {
           <MyPostWidget picturePath={picturePath} />
           <PostsWidget userId={_id} />
         </Box>
-        {isNonMobileScreens && <Box flexBasis="26%"></Box>}
+        {isNonMobileScreens && <Box flexBasis="26%">
+         <AdvertWidget/>
+         </Box>}
       </Box>
     </Box>
   );
 }
-
-//This is a fake comment
 
 export default HomePage;

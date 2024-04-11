@@ -28,7 +28,7 @@ export const createPostController = async (req, res) => {
 //Get all the posts
 export const getAllPosts = async (req, res) => {
   try {
-    const posts = await postModel.find();
+    const posts = await postModel.find().sort({ createdAt: -1 });
     res.status(201).send({posts});
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -38,8 +38,8 @@ export const getAllPosts = async (req, res) => {
 //Get only user posts
 export const getUserPosts = async (req, res) => {
   try {
-    const { userId } = req.body;
-    const posts = await postModel.find({ userId });
+    const { userId } = req.params;
+    const posts = await postModel.find({ userId }).sort({ createdAt: -1 });
     res.status(201).send({posts});
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -71,3 +71,15 @@ export const likePost = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+
+
+//Delete Post
+export const deletePost = async(req, res) => {
+   try {
+      const {postId} = req.params;
+      await postModel.findByIdAndDelete(postId)
+      res.status(201).send({message: "Deleted successfully"})
+   } catch (error) {
+      res.status(500).json({message: error.message})
+   }
+}

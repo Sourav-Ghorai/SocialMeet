@@ -28,6 +28,7 @@ function PostsWidget({ userId, isProfile = false }) {
         },
       }
     );
+    //  console.log(data);
     dispatch(setPosts({ posts: data.posts }));
   };
 
@@ -38,6 +39,8 @@ function PostsWidget({ userId, isProfile = false }) {
       getPosts();
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  if (!posts) return null;
 
   return (
     <>
@@ -65,6 +68,7 @@ function PostsWidget({ userId, isProfile = false }) {
             userPicturePath={userPicturePath}
             likes={likes}
             comments={comments}
+            isProfile={isProfile}
           />
         )
       )}

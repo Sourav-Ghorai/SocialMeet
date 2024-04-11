@@ -1,19 +1,24 @@
 import React from "react";
-import { PersonAddOutlined, PersonRemoveOutlined } from "@mui/icons-material";
+import {
+  PersonAddOutlined,
+  PersonRemoveOutlined,
+  DeleteOutlineOutlined,
+} from "@mui/icons-material";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { setFriends } from "state/reduxState";
+import { setFriends, setUpdatedPost } from "state/reduxState";
 import FlexBetween from "./FlexBetween";
 import UserImage from "./UserImage";
 import axios from "axios";
 
-function Friend({ friendId, name, subtitle, userPicturePath }) {
+function Friend({ friendId, name, subtitle, userPicturePath, postId = null }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { _id } = useSelector((state) => state.user);
   const token = useSelector((state) => state.token);
   const friends = useSelector((state) => state.user.friends);
+  //   console.log(_id);
 
   const { palette } = useTheme();
   const primaryLight = palette.primary.light;
@@ -25,7 +30,8 @@ function Friend({ friendId, name, subtitle, userPicturePath }) {
 
   const patchFriend = async () => {
     const { data } = await axios.patch(
-      `${process.env.REACT_APP_API}/users/${_id}/${friendId}`, null,
+      `${process.env.REACT_APP_API}/users/${_id}/${friendId}`,
+      null,
       {
         headers: {
           Authorization: token,
@@ -33,6 +39,19 @@ function Friend({ friendId, name, subtitle, userPicturePath }) {
       }
     );
     dispatch(setFriends({ friends: data.formattedFriends }));
+  };
+
+  const handleDelete = async () => {
+    const result = await axios.delete(
+      `${process.env.REACT_APP_API}/posts/delete/${postId}`,
+      {
+         headers: {
+           Authorization: token,
+         },
+       }
+    );
+    window.location.reload();
+   //  dispatch(setUpdatedPost({ postId: postId }));
   };
 
   return (
@@ -63,16 +82,25 @@ function Friend({ friendId, name, subtitle, userPicturePath }) {
           </Typography>
         </Box>
       </FlexBetween>
-      <IconButton
-        onClick={() => patchFriend()}
-        sx={{ backgroundColor: primaryLight, p: "0.6rem" }}
-      >
-        {isFriend ? (
-          <PersonRemoveOutlined sx={{ color: primaryDark }} />
-        ) : (
-          <PersonAddOutlined sx={{ color: primaryDark }} />
-        )}
-      </IconButton>
+      {_id === friendId && postId ? (
+        <IconButton
+          onClick={() => handleDelete()}
+          sx={{ backgroundColor: "#f7c6c5", p: "0.6rem" }}
+        >
+          <DeleteOutlineOutlined sx={{ color: "red" }} />
+        </IconButton>
+      ) : (
+        <IconButton
+          onClick={() => patchFriend()}
+          sx={{ backgroundColor: primaryLight, p: "0.6rem" }}
+        >
+          {isFriend ? (
+            <PersonRemoveOutlined sx={{ color: primaryDark }} />
+          ) : (
+            <PersonAddOutlined sx={{ color: primaryDark }} />
+          )}
+        </IconButton>
+      )}
     </FlexBetween>
   );
 }

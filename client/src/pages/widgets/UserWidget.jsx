@@ -14,7 +14,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-function UserWidget({ userId, picturePath }) {
+function UserWidget({ userId, picturePath, isHome=true }) {
   const [user, setUser] = useState(null);
   const { palette } = useTheme();
   const navigate = useNavigate();
@@ -58,7 +58,7 @@ function UserWidget({ userId, picturePath }) {
   } = user;
 
   return (
-    <WidgetWrapper position="sticky" top="5.2rem">
+   <WidgetWrapper {...(isHome ? { position: "sticky", top: "5.2rem" } : {})}>
       {/* First Row  */}
       <FlexBetween
         gap="0.5rem"

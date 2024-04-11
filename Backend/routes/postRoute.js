@@ -1,6 +1,7 @@
 import express from "express";
 import { verifyToken } from "../middlewares/authMiddleware.js";
 import {
+   deletePost,
   getAllPosts,
   getUserPosts,
   likePost,
@@ -14,5 +15,8 @@ router.get("/:userId", verifyToken, getUserPosts);
 
 //Update post
 router.patch("/:id/like", verifyToken, likePost);
+
+//Delete Post
+router.delete("/delete/:postId", verifyToken, deletePost);
 
 export default router;

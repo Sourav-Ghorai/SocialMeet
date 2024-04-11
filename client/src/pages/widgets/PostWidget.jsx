@@ -23,6 +23,7 @@ function PostWidget({
   userPicturePath,
   likes,
   comments,
+  isProfile = false
 }) {
   const [isComments, setIsComments] = useState(false);
   const dispatch = useDispatch();
@@ -56,6 +57,7 @@ function PostWidget({
         name={name}
         subtitle={location}
         userPicturePath={userPicturePath}
+        {...(isProfile ? { postId: postId } : { postId: null })}
       />
       <Typography color={main} sx={{ mt: "1rem" }}>
         {description}

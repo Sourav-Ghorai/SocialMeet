@@ -7,7 +7,7 @@ export const getUserController = async (req, res) => {
     const user = await userModel.findById(id);
     res.status(200).send({
       sucess: true,
-      user
+      user,
     });
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -28,7 +28,7 @@ export const getFriendsController = async (req, res) => {
         return { _id, firstName, lastName, occupation, location, picturePath };
       }
     );
-    res.status(200).json(formattedFriends);
+    res.status(200).send({ formattedFriends });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -42,13 +42,21 @@ export const modifyFriendsController = async (req, res) => {
     const friend = await userModel.findById(friendId);
 
     if (user.friends.includes(friendId)) {
-      user.friends = user.friends.filter((id) => id !== friendId);
-      friend.friends = friend.friends.filter((id) => id !== id);
+      if (id === friendId) {
+        user.friends = user.friends.filter((id) => id !== friendId);
+      } else {
+        user.friends = user.friends.filter((id) => id !== friendId);
+        friend.friends = friend.friends.filter((id) => id !== id);
+      }
     } else {
-      user.friends.push(friendId);
-      friend.friends.push(id);
+      if (id === friendId) {
+        user.friends.push(friendId);
+      } else {
+        user.friends.push(friendId);
+        friend.friends.push(id);
+      }
     }
-
+    
     await user.save();
     await friend.save();
 
@@ -60,7 +68,7 @@ export const modifyFriendsController = async (req, res) => {
         return { _id, firstName, lastName, occupation, location, picturePath };
       }
     );
-    res.status(200).send({formattedFriends});
+    res.status(200).send({ formattedFriends });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

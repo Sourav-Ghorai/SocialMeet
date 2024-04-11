@@ -62,7 +62,20 @@ function PostWidget({
     }
   };
 
-  const handleComment = async () => {};
+  const handleComment = async () => {
+    if (comment) {
+      try {
+        const { data } = await axios.patch(
+          `${process.env.REACT_APP_API}/posts/comment/${postId}`,
+          { comment: comment },
+          { headers: { Authorization: token } }
+        );
+        setComment("");
+      } catch (error) {
+        console.log("Error while adding comment.");
+      }
+    }
+  };
 
   return (
     <WidgetWrapper mb="2rem">
@@ -117,16 +130,35 @@ function PostWidget({
       </FlexBetween>
       {isComments && (
         <Box mt="0.5rem">
-          {comments.map((comment, i) => (
-            <Box key={`${name}-${i}`}>
-              <Divider />
-              <Typography sx={{ color: main, m: "0.5rem 0", pl: "1rem" }}>
-                {comment}
-              </Typography>
-            </Box>
-          ))}
-          <Divider />
-          <FlexBetween gap="1rem" sx={{ m: "1rem 0" }}>
+          <Box
+            sx={{
+              height: "100px",
+              overflow: "auto",
+              "&::-webkit-scrollbar": {
+                width: "8px", // Width of the scrollbar
+              },
+              "&::-webkit-scrollbar-track": {
+                background: "#f1f1f1", // Color of the track
+                borderRadius: "4px",
+              },
+              "&::-webkit-scrollbar-thumb": {
+                background: "#888", // Color of the thumb
+                borderRadius: "4px", // Border radius of the thumb
+              },
+            }}
+          >
+            {comments.map((comment, i) => (
+              <Box key={`${name}-${i}`}>
+                <Divider />
+                <Typography sx={{ color: main, m: "0.5rem 0", pl: "1rem" }}>
+                  {comment}
+                </Typography>
+              </Box>
+            ))}
+            <Divider />
+          </Box>
+
+          <FlexBetween gap="1rem" sx={{ m: "1.5rem 0 1rem 0" }}>
             <InputBase
               placeholder="Comment Something..."
               value={comment}
@@ -143,7 +175,7 @@ function PostWidget({
                 backgroundColor: palette.neutral.light,
                 p: "0.7rem",
               }}
-            //   disabled={!comment}
+              //   disabled={!comment}
               onClick={() => handleComment()}
             >
               <SendIcon sx={{ color: primaryLight }} />

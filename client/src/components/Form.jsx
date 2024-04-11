@@ -226,6 +226,7 @@ function Form() {
             {/* Email and password same for both login and register  */}
             <TextField
               label="Email"
+              type="email"
               onBlur={handleBlur}
               onChange={handleChange}
               value={values.email}
@@ -236,6 +237,7 @@ function Form() {
             />
             <TextField
               label="Password"
+              type="password"
               onBlur={handleBlur}
               onChange={handleChange}
               value={values.password}

@@ -5,13 +5,21 @@ import {
   FavoriteOutlined,
   ShareOutlined,
 } from "@mui/icons-material";
-import { Box, Divider, IconButton, Typography, useTheme } from "@mui/material";
+import {
+  Box,
+  Divider,
+  IconButton,
+  Typography,
+  useTheme,
+  InputBase,
+} from "@mui/material";
 import FlexBetween from "components/FlexBetween";
 import WidgetWrapper from "components/WidgetWrapper";
 import Friend from "components/Friend";
 import { useDispatch, useSelector } from "react-redux";
 import { setPost } from "state/reduxState";
 import axios from "axios";
+import SendIcon from "@mui/icons-material/Send";
 
 function PostWidget({
   postId,
@@ -23,7 +31,7 @@ function PostWidget({
   userPicturePath,
   likes,
   comments,
-  isProfile = false
+  isProfile = false,
 }) {
   const [isComments, setIsComments] = useState(false);
   const dispatch = useDispatch();
@@ -35,6 +43,10 @@ function PostWidget({
   const { palette } = useTheme();
   const main = palette.neutral.main;
   const primary = palette.primary.main;
+  const primaryLight = palette.primary.light;
+  const primaryDark = palette.primary.dark;
+
+  const [comment, setComment] = useState("");
 
   const patchLike = async () => {
     try {
@@ -50,8 +62,10 @@ function PostWidget({
     }
   };
 
+  const handleComment = async () => {};
+
   return (
-    <WidgetWrapper m="2rem 0">
+    <WidgetWrapper mb="2rem">
       <Friend
         friendId={postUserId}
         name={name}
@@ -112,6 +126,29 @@ function PostWidget({
             </Box>
           ))}
           <Divider />
+          <FlexBetween gap="1rem" sx={{ m: "1rem 0" }}>
+            <InputBase
+              placeholder="Comment Something..."
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+              sx={{
+                width: "100%",
+                backgroundColor: palette.neutral.light,
+                borderRadius: "1.5rem",
+                padding: "0.5rem 1rem",
+              }}
+            />
+            <IconButton
+              sx={{
+                backgroundColor: palette.neutral.light,
+                p: "0.7rem",
+              }}
+            //   disabled={!comment}
+              onClick={() => handleComment()}
+            >
+              <SendIcon sx={{ color: primaryLight }} />
+            </IconButton>
+          </FlexBetween>
         </Box>
       )}
     </WidgetWrapper>

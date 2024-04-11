@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import Navbar from "components/Navbar";
 import FriendsWidget from "./widgets/FriendsWidget";
-import MyPostWidget from "./widgets/MyPostWidget";
 import PostsWidget from "./widgets/PostsWidget";
 import UserWidget from "./widgets/UserWidget";
 import axios from "axios";
@@ -46,7 +45,7 @@ function ProfilePage() {
         width="100%"
         padding="7rem 5% 2rem 5%"
         display={isNonMobileScreens ? "flex" : "block"}
-        gap="2rem"
+        gap="4rem"
         justifyContent="center"
       >
         <Box flexBasis={isNonMobileScreens ? "26%" : undefined}>
@@ -62,8 +61,6 @@ function ProfilePage() {
           flexBasis={isNonMobileScreens ? "42%" : undefined}
           mt={isNonMobileScreens ? undefined : "2rem"}
         >
-          <MyPostWidget picturePath={picturePath} />
-          <Box m="2rem 0" />
           <PostsWidget userId={userId} isProfile={true} />
         </Box>
       </Box>

@@ -29,6 +29,7 @@ function HomePage() {
           mt={isNonMobileScreens ? undefined : "2rem"}
         >
           <MyPostWidget picturePath={picturePath} />
+          <Box m="2rem 0" />
           <PostsWidget userId={_id} />
         </Box>
         {isNonMobileScreens && (

@@ -22,6 +22,8 @@ function UserWidget({ userId, picturePath, isHome=true }) {
   const dark = palette.neutral.dark;
   const medium = palette.neutral.medium;
   const main = palette.neutral.main;
+  const friendsLength = useSelector((state) => state.user.friends);
+
 
   //   console.log(picturePath);
   const getUser = async () => {
@@ -81,7 +83,7 @@ function UserWidget({ userId, picturePath, isHome=true }) {
             >
               {firstName} {lastName}
             </Typography>
-            <Typography color={medium}>{friends.length} friends</Typography>
+            <Typography color={medium}>{friendsLength.length} friends</Typography>
           </Box>
         </FlexBetween>
         <ManageAccountsOutlined />

@@ -70,6 +70,7 @@ function PostWidget({
           { comment: comment },
           { headers: { Authorization: token } }
         );
+        dispatch(setPost({ post: data.updatedPost }));
         setComment("");
       } catch (error) {
         console.log("Error while adding comment.");
@@ -147,14 +148,18 @@ function PostWidget({
               },
             }}
           >
-            {comments.map((comment, i) => (
-              <Box key={`${name}-${i}`}>
-                <Divider />
-                <Typography sx={{ color: main, m: "0.5rem 0", pl: "1rem" }}>
-                  {comment}
-                </Typography>
-              </Box>
-            ))}
+            {comments
+              .slice()
+              .reverse()
+              .map((comment, i) => (
+                <Box key={`${name}-${i}`}>
+                  <Divider />
+                  <Typography sx={{ color: main, m: "0.5rem 0", pl: "1rem" }}>
+                    {comment}
+                  </Typography>
+                </Box>
+              ))}
+
             <Divider />
           </Box>
 

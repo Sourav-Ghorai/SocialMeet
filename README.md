@@ -8,15 +8,15 @@ SocialMeet is a social media platform where users can connect with friends, shar
 
 #### Home Page <br/>
 
-<img src="./public/assets/home1.png" alt="HomePage-Demo" width="350"/> <img src="./public/assets/home2.png" alt="HomePage-Demo" width="350"/> <br/>
+<img src="./public/assets/Home1.png" alt="HomePage-Demo" width="350"/> <img src="./public/assets/Home2.png" alt="HomePage-Demo" width="350"/> <br/>
 
 #### Register & Login <br/>
 
-<img src="./public/assets/register.png" alt="Register-Demo" width="350"/> <img src="./public/assets/login.png" alt="Login-Demo" width="350"/> <br/>
+<img src="./public/assets/Register.png" alt="Register-Demo" width="350"/> <img src="./public/assets/Login.png" alt="Login-Demo" width="350"/> <br/>
 
 #### Cart, User Dashboard and Admin panel <br/>
 
-<img src="./public/assets/cart.png" alt="Cart-Demo" width="30%"/> <img src="./public/assets/userDashboard.png" alt="user dashboard-Demo" width="30%"/> <img src="./public/assets/adminDashboard.png" alt="admin dashboard-Demo" width="30%"/><br/>
+<img src="./public/assets/Light phone.png" alt="Cart-Demo" width="30%"/> <img src="./public/assets/Dark Phone.png" alt="user dashboard-Demo" width="30%"/> <img src="./public/assets/Profile.png" alt="admin dashboard-Demo" width="30%"/><br/>
 
 ## ✨ Features
 

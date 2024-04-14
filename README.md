@@ -91,7 +91,7 @@ Before you begin, ensure you have met the following requirements:
    cd client
    npm install
 
-   cd ../backend
+   cd ../Backend
    npm install
    ```
 
@@ -112,7 +112,7 @@ After installing the dependencies, you can run the application using the followi
   cd ../client
    npm start
 
-   cd ../backend  
+   cd ../Backend  
    npm start
 
   ```

@@ -12,11 +12,11 @@ SocialMeet is a social media platform where users can connect with friends, shar
 
 #### Register & Login <br/>
 
-<img src="./public/assets/Register.png" alt="Register-Demo" width="350"/> <img src="./public/assets/Login.png" alt="Login-Demo" width="350"/> <br/>
+<img src="./public/assets/Register.png" alt="Register-Demo" height="350"/> <img src="./public/assets/Login.png" alt="Login-Demo" height="350"/> <img src="./public/assets/Light phone.png" alt="Cart-Demo" height="350"/> <img src="./public/assets/Dark Phone.png" alt="user dashboard-Demo" height="350"/>  <br/>
 
-#### Cart, User Dashboard and Admin panel <br/>
+#### Profile <br/>
 
-<img src="./public/assets/Light phone.png" alt="Cart-Demo" width="30%"/> <img src="./public/assets/Dark Phone.png" alt="user dashboard-Demo" width="30%"/> <img src="./public/assets/Profile.png" alt="admin dashboard-Demo" width="30%"/><br/>
+<img src="./public/assets/Profile.png" alt="admin dashboard-Demo" width="350"/><br/>
 
 ## ✨ Features
 

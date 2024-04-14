@@ -33,28 +33,31 @@ SocialMeet is a social media platform where users can connect with friends, shar
 
 ### 💻 Frontend
 
-- [React](https://reactjs.org/) - JavaScript library for building user interfaces.
-- [React Router DOM](https://reactrouter.com/web/guides/quick-start) - The standard routing library for React
-- [Axios](https://axios-http.com/) - Promise-based HTTP client for making API requests.
-- [Bootstrap](https://getbootstrap.com/) - CSS framework for building responsive and mobile-first websites.
-- [Ant Design](https://ant.design/) - A design system with values of Nature and Determinacy for better user experience of enterprise applications
-- [Braintree Web Drop-in React](https://www.npmjs.com/package/braintree-web-drop-in-react) - A pre-built UI for Braintree's Drop-in
-- [React Helmet](https://www.npmjs.com/package/react-helmet) - A document head manager for React
-- [React Hot Toast](https://react-hot-toast.com/) - Smoking hot notifications for React
+- React: A JavaScript library for building user interfaces.
+- Redux: A Predictable State Container for JS Apps.
+- Material-UI: A popular React UI framework.
+- Emotion: A library designed for writing CSS styles with JavaScript.
+- Formik: A library to help build forms in React, managing form state and validation.
+- Yup: A JavaScript schema builder for value parsing and validation.
+- Ant Design: A design system with values of Nature and Determinacy for better user experience of enterprise applications.
+- React Router: A collection of navigational components that compose declaratively with your application.
+- React Dropzone: A React component for creating an area for users to drag and drop files into.
+- React Hot Toast: Smokin' hot React notifications.
+- Axios: A promise-based HTTP client for the browser and node.js.
+- Web Vitals: A library for measuring several important web performance metrics.
 
 ### 🌐 Backend
 
-- [Node.js](https://nodejs.org/) - JavaScript runtime for building server-side applications.
-- [Express](https://expressjs.com/) - Web application framework for Node.js for building APIs.
-- [MongoDB](https://mongodb.com/) - NoSQL database for storing product and user data.
-- [Bcrypt](https://www.npmjs.com/package/bcrypt) - A library to help you hash passwords
-- [Mongoose](https://mongoosejs.com/) - Elegant mongodb object modeling for node.js
-- [Jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) - An implementation of JSON Web Tokens
-- [Dotenv](https://www.npmjs.com/package/dotenv) - A zero-dependency module that loads environment variables from a `.env` file into `process.env`
-- [Cors](https://www.npmjs.com/package/cors) - Package for providing a Connect/Express middleware that can be used to enable CORS with various options
-- [Morgan](https://www.npmjs.com/package/morgan) - HTTP request logger middleware for node.js
-- [Braintree](https://www.npmjs.com/package/braintree) - A Node.js library for integrating with the Braintree Gateway
-- [Express Formidable](https://www.npmjs.com/package/express-formidable) - A Node.js module for parsing form data, especially file uploads
+- Node.js - JavaScript runtime for building server-side applications.
+- Express - Web application framework for Node.js for building APIs.
+- MongoDB - NoSQL database for storing product and user data.
+- Bcrypt - A library to help you hash passwords
+- Mongoose - Elegant mongodb object modeling for node.js
+- Jsonwebtoken - An implementation of JSON Web Tokens
+- Dotenv - A zero-dependency module that loads environment variables from a `.env` file into `process.env`
+- Cors - Package for providing a Connect/Express middleware that can be used to enable CORS with various options
+- Morgan - HTTP request logger middleware for node.js
+- Multer: Multer is a node.js middleware for handling `multipart/form-data`, which is primarily used for uploading files.
 
 ## 🏁 Getting Started
 

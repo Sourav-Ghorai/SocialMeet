@@ -12,7 +12,7 @@ SocialMeet is a social media platform where users can connect with friends, shar
 
 #### Register & Login <br/>
 
-<img src="./public/assets/Register.png" alt="Register-Demo" height="350"/> <img src="./public/assets/Login.png" alt="Login-Demo" height="350"/> <img src="./public/assets/Light phone.png" alt="Cart-Demo" height="350"/> <img src="./public/assets/Dark Phone.png" alt="user dashboard-Demo" height="350"/>  <br/>
+<img src="./public/assets/Register.png" alt="Register-Demo" height="350"/> <img src="./public/assets/Login.png" alt="Login-Demo" height="350"/> <img src="./public/assets/Light phone.png" alt="Cart-Demo" height="350"/> <img src="./public/assets/Dark Phone.png" alt="user dashboard-Demo" height="350"/> <br/>
 
 #### Profile <br/>
 
@@ -20,14 +20,14 @@ SocialMeet is a social media platform where users can connect with friends, shar
 
 ## ✨ Features
 
-- **👤 User Authentication:**  Users can register and log in. Passwords are hashed for security. JWT tokens are issued upon successful login for subsequent authenticated requests.
-- **📝 Create Posts:**  Users can create posts to share updates, thoughts, and media content.
-- **❤️ Like Posts:**  Users can like posts to show appreciation for content shared by others.
-- **💬 Comment on Posts:**  Users can comment on posts to engage in discussions and interactions with other users.
-- **🧑‍🤝‍🧑 User Profiles:**  Each user has a profile page displaying their information and activity.
-- **📷 File Uploads:**  Support for uploading images and other media files with posts and profile pictures.
-- **📱 Responsive Design:**  The application is optimized for various screen sizes, including desktop, tablet, and mobile devices.
-- **🌓 Theme Changing:**  Seamlessly switch between light and dark themes to personalize browsing experience.
+- **👤 User Authentication:** Users can register and log in. Passwords are hashed for security. JWT tokens are issued upon successful login for subsequent authenticated requests.
+- **📝 Create Posts:** Users can create posts to share updates, thoughts, and media content.
+- **❤️ Like Posts:** Users can like posts to show appreciation for content shared by others.
+- **💬 Comment on Posts:** Users can comment on posts to engage in discussions and interactions with other users.
+- **🧑‍🤝‍🧑 User Profiles:** Each user has a profile page displaying their information and activity.
+- **📷 File Uploads:** Support for uploading images and other media files with posts and profile pictures.
+- **📱 Responsive Design:** The application is optimized for various screen sizes, including desktop, tablet, and mobile devices.
+- **🌓 Theme Changing:** Seamlessly switch between light and dark themes to personalize browsing experience.
 
 ## 🛠️ Technologies Used
 
@@ -76,22 +76,26 @@ Before you begin, ensure you have met the following requirements:
 1. 🔽 Clone the repository:
 
    ```bash
-   git clone https://github.com/Sourav-Ghorai/EcoMart.git
+   git clone https://github.com/Sourav-Ghorai/SocialMeet.git
    ```
 
 2. 📂 Navigate into the directory:
 
    ```bash
-   cd EcoMart
+   cd SocialMeet
    ```
 
-3. 🌐 Install the dependencies:
+3. 🌐 Install dependencies for both the frontend and backend:
 
    ```bash
+   cd client
+   npm install
+
+   cd ../backend
    npm install
    ```
 
-4. 🌿 Create a .env file in the root directory and configure environment variables such as MongoDB URI, JWT secret, Braintree credentials, etc.
+4. 🌿 Create a .env file in the root directory and configure environment variables such as MongoDB URI, JWT secret etc.
 
    ```bash
    cp .env.example .env
@@ -103,20 +107,22 @@ Before you begin, ensure you have met the following requirements:
 
 After installing the dependencies, you can run the application using the following scripts defined in the `package.json` file:
 
--   To run the application in development mode, use:
-    ```bash
-    npm run dev
-    ```
--   To start the application normally, use:
-    ```bash
-    npm start
-    ```
+- To run the application in development mode, use:
+  ```bash
+  cd ../client
+   npm start
+
+   cd ../backend  
+   npm start
+
+  ```
 
 Access the Application:
 
-   Open your browser and navigate to http://localhost:3000 to access the EcoMart application.
+Open your browser and navigate to http://localhost:3000 to access the SocialMeet application.
 
 ## Contribution
+
 Contributions are welcome! If you'd like to contribute to SocialMeet, feel free to fork the repository, make your changes, and submit a pull request. Make sure to follow the project's coding guidelines and conventions.
 
-**Thank you for choosing EcoMart! Happy shopping! 🌿🛒**
+**Thank you for choosing SocialMeet! Enjoy our service! 🙂**

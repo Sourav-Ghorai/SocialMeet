@@ -22,6 +22,8 @@ import { users, posts } from "./data/dummyData.js";
 dotenv.config();
 const app = express();
 
+app.use(express.json({ limit: "1mb" }));
+
 // Middleware configuration
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -65,7 +67,7 @@ mongoose
       console.log(`Server is running at port: ${PORT}`.bgCyan.black)
     );
     /* ADD DATA ONE TIME */
-   //  userModel.insertMany(users);
-   //  postModel.insertMany(posts);
+    //  userModel.insertMany(users);
+    //  postModel.insertMany(posts);
   })
   .catch((error) => console.log(`${error} did not connect`.bgRed.white));

@@ -1,6 +1,7 @@
 # 🌑 **SocialMeet**
 
 SocialMeet is a social media platform where users can connect with friends, share updates, and interact with each other through posts, comments, and likes.
+The site is currently running at https://sourav-socialmeet.vercel.app/
 
 <!-- ### The site is currently running at [https://perfect-pear-yoke.cyclic.app/](https://perfect-pear-yoke.cyclic.app/) -->
 

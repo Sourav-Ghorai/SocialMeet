@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
-import Form from "components/Form";
+import Form from "../components/Form";
 import { Toaster } from "react-hot-toast";
 
 function LoginPage() {

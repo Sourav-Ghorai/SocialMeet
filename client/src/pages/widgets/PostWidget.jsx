@@ -13,9 +13,9 @@ import {
   useTheme,
   InputBase,
 } from "@mui/material";
-import FlexBetween from "components/FlexBetween";
-import WidgetWrapper from "components/WidgetWrapper";
-import Friend from "components/Friend";
+import FlexBetween from "../../components/FlexBetween";
+import WidgetWrapper from "../../components/WidgetWrapper";
+import Friend from "../../components/Friend";
 import { useDispatch, useSelector } from "react-redux";
 import { setPost } from "state/reduxState";
 import axios from "axios";

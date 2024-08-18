@@ -1,6 +1,8 @@
 import jwt from "jsonwebtoken";
 import userModel from "../models/userModel.js";
 import { comparePassword, hashPassword } from "../helpers/authHelper.js";
+import { uploadOnCloudinary } from "../utils/cloudinary.js";
+
 
 //Register controller
 export const registerController = async (req, res) => {
@@ -10,11 +12,13 @@ export const registerController = async (req, res) => {
       lastName,
       email,
       password,
-      picturePath,
       friends,
       location,
       occupation,
     } = req.body;
+
+    const imgPath = req.file.path;
+
     //Check for Existing user
     const existingUser = await userModel.findOne({ email });
     if (existingUser) {
@@ -23,25 +27,36 @@ export const registerController = async (req, res) => {
         message: "Already registered please login.",
       });
     }
+
+   const userPic = await uploadOnCloudinary(imgPath, "UserPic");
+
+   if (!userPic?.secure_url) {
+     return res.status(500).send({
+       success: false,
+       message: "Error in uploading userpic",
+     });
+   }
+   // console.log(userPic.secure_url)
+
+   const hashedPassword = await hashPassword(password);
+   const user = await new userModel({
+     firstName,
+     lastName,
+     email,
+     password: hashedPassword,
+     picturePath: userPic.secure_url,
+     friends,
+     location,
+     occupation,
+     viewedProfile: Math.floor(Math.random() * 10000),
+     impressions: Math.floor(Math.random() * 10000),
+   }).save();
+   res.status(201).send({
+     success: true,
+     message: "User Register Successfully",
+     user,
+   });
     
-    const hashedPassword = await hashPassword(password);
-    const user = await new userModel({
-      firstName,
-      lastName,
-      email,
-      password: hashedPassword,
-      picturePath,
-      friends,
-      location,
-      occupation,
-      viewedProfile: Math.floor(Math.random() * 10000),
-      impressions: Math.floor(Math.random() * 10000),
-    }).save();
-    res.status(201).send({
-      success: true,
-      message: "User Register Successfully",
-      user,
-    });
   } catch (error) {
     res.status(500).send({
       success: false,

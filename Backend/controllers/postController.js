@@ -1,35 +1,57 @@
 import postModel from "../models/postModel.js";
 import userModel from "../models/userModel.js";
+import { uploadOnCloudinary } from "../utils/cloudinary.js";
 
 //Create posts
 export const createPostController = async (req, res) => {
   try {
     const { userId, description, picturePath } = req.body;
+    const postImg = req.file?.path;
+
     const user = await userModel.findById(userId);
+    if (!user) {
+      return res
+        .status(404)
+        .send({ success: false, message: "User not found" });
+    }
+
+    let postPic;
+    if (postImg) {
+      postPic = await uploadOnCloudinary(postImg, "Posts");
+      if (!postPic?.secure_url) {
+        return res.status(500).send({
+          success: false,
+          message: "Error in uploading postPic",
+        });
+      }
+    }
+
     const newPost = await new postModel({
       userId,
       firstName: user.firstName,
       lastName: user.lastName,
       location: user.location,
       description,
-      picturePath,
+      picturePath: postPic?.secure_url || null,
       userPicturePath: user.picturePath,
       likes: {},
       comments: [],
     }).save();
 
-    const posts = await postModel.find();
-    res.status(201).send({posts});
+    const posts = await postModel.find().sort({ createdAt: -1 });
+    res.status(201).send({ posts });
   } catch (err) {
+    console.error("Error in createPostController:", err);
     res.status(500).json({ message: err.message });
   }
 };
+
 
 //Get all the posts
 export const getAllPosts = async (req, res) => {
   try {
     const posts = await postModel.find().sort({ createdAt: -1 });
-    res.status(201).send({posts});
+    res.status(201).send({ posts });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -40,7 +62,7 @@ export const getUserPosts = async (req, res) => {
   try {
     const { userId } = req.params;
     const posts = await postModel.find({ userId }).sort({ createdAt: -1 });
-    res.status(201).send({posts});
+    res.status(201).send({ posts });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -65,39 +87,38 @@ export const likePost = async (req, res) => {
       { likes: post.likes },
       { new: true }
     );
-    
-    res.status(201).send({updatedPost});
+
+    res.status(201).send({ updatedPost });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 };
 
 //Add Comment
-export const addComment = async(req, res) => {
-   try {
-      const {id} = req.params;
-      const {comment} = req.body;
-      const post = await postModel.findById(id);
-      post.comments.push(comment);
-      const updatedPost = await postModel.findByIdAndUpdate(
-         id,
-         { comments: post.comments },
-         { new: true }
-       );
-       res.status(201).send({updatedPost});
-   } catch (error) {
-      res.status(500).json({ message: err.message });
-   }
-}
-
+export const addComment = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { comment } = req.body;
+    const post = await postModel.findById(id);
+    post.comments.push(comment);
+    const updatedPost = await postModel.findByIdAndUpdate(
+      id,
+      { comments: post.comments },
+      { new: true }
+    );
+    res.status(201).send({ updatedPost });
+  } catch (error) {
+    res.status(500).json({ message: err.message });
+  }
+};
 
 //Delete Post
-export const deletePost = async(req, res) => {
-   try {
-      const {postId} = req.params;
-      await postModel.findByIdAndDelete(postId)
-      res.status(201).send({message: "Deleted successfully"})
-   } catch (error) {
-      res.status(500).json({message: error.message})
-   }
-}
+export const deletePost = async (req, res) => {
+  try {
+    const { postId } = req.params;
+    await postModel.findByIdAndDelete(postId);
+    res.status(201).send({ message: "Deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};

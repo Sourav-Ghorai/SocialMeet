@@ -31,6 +31,7 @@ function MyPostWidget({ picturePath }) {
   const dispatch = useDispatch();
   const [isImage, setIsImage] = useState(false);
   const [image, setImage] = useState(null);
+  const [isPosting, setIsPosting] = useState(false);
   const [description, setDescription] = useState("");
   const { palette } = useTheme();
   const { _id } = useSelector((state) => state.user);
@@ -40,6 +41,7 @@ function MyPostWidget({ picturePath }) {
   const medium = palette.neutral.medium;
 
   const handlePost = async () => {
+   setIsPosting(true);
     const formData = new FormData();
     formData.append("userId", _id);
     formData.append("description", description);
@@ -62,6 +64,7 @@ function MyPostWidget({ picturePath }) {
     setDescription("");
     setIsImage(false);
     setImage(null);
+    setIsPosting(false);
   };
 
   return (
@@ -170,7 +173,7 @@ function MyPostWidget({ picturePath }) {
             borderRadius: "3rem",
           }}
         >
-          POST
+          {isPosting? 'Posting...' : 'POST'}
         </Button>
       </FlexBetween>
     </WidgetWrapper>

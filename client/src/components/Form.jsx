@@ -67,7 +67,7 @@ function Form() {
       for (let value in values) {
         formData.append(value, values[value]);
       }
-      formData.append("picturePath", values.picture.name);
+      // formData.append("picturePath", values.picture.name);
       const { data } = await axios.post(
         `${process.env.REACT_APP_API}/auth/register`,
         formData

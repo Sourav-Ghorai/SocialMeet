@@ -59,9 +59,12 @@ function Form() {
   const isRegister = pageType === "register";
   const isNonMobileScreen = useMediaQuery("(min-width: 600px)");
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   //Registration handler
   const register = async (values, onSubmitProps) => {
     try {
+      setIsSubmitting(true);
       //FormData allows us to send form info with image
       const formData = new FormData();
       for (let value in values) {
@@ -81,12 +84,15 @@ function Form() {
       }
     } catch (error) {
       toast.error("Something went wrong");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
   //Login handler
   const login = async (values, onSubmitProps) => {
     try {
+      setIsSubmitting(true);
       const { data } = await axios.post(
         `${process.env.REACT_APP_API}/auth/login`,
         values
@@ -107,6 +113,8 @@ function Form() {
       }
     } catch (error) {
       toast.error("Something went wrong");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -250,6 +258,7 @@ function Form() {
           {/* Button  */}
           <Box>
             <Button
+              disabled = {isSubmitting}
               fullWidth
               type="submit"
               sx={{
@@ -260,7 +269,9 @@ function Form() {
                 "&:hover": { color: palette.primary.main },
               }}
             >
-              {isLogin ? "LOGIN" : "REGISTER"}
+              {isSubmitting
+                ? "Submitting..."
+                : `${isLogin ? "LOGIN" : "REGISTER"}`}
             </Button>
             <Typography
               onClick={() => {

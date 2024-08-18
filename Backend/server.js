@@ -17,9 +17,6 @@ import authRoute from "./routes/authRoute.js";
 import userRoute from "./routes/userRoute.js";
 import postRoute from "./routes/postRoute.js";
 import { verifyToken } from "./middlewares/authMiddleware.js";
-import userModel from "./models/userModel.js";
-import postModel from "./models/postModel.js";
-import { users, posts } from "./data/dummyData.js";
 
 
 const app = express();
@@ -69,8 +66,5 @@ mongoose
     app.listen(PORT, () =>
       console.log(`Server is running at port: ${PORT}`.bgCyan.black)
     );
-    /* ADD DATA ONE TIME */
-    //  userModel.insertMany(users);
-    //  postModel.insertMany(posts);
   })
   .catch((error) => console.log(`${error} did not connect`.bgRed.white));

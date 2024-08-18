@@ -1,9 +1,9 @@
 import { v2 as cloudinary } from "cloudinary";
-import dotenv from 'dotenv'
+import dotenv from "dotenv";
 import fs from "fs";
 import path from "path";
 
-dotenv.config()
+dotenv.config();
 
 // configuration of cloudinary
 cloudinary.config({
@@ -15,7 +15,6 @@ cloudinary.config({
 // fn to upload file on cloudinary
 const uploadOnCloudinary = async (localFilePath, type) => {
   try {
-
     // return null if there is no local file path
     if (!localFilePath) return null;
 
@@ -24,7 +23,7 @@ const uploadOnCloudinary = async (localFilePath, type) => {
       folder += "UserPic/";
     } else if (type === "Posts") {
       folder += "Posts/";
-    } 
+    }
 
     // upload the file on cloudinary
     const response = await cloudinary.uploader.upload(localFilePath, {
@@ -34,7 +33,7 @@ const uploadOnCloudinary = async (localFilePath, type) => {
       display_name: path.basename(localFilePath, path.extname(localFilePath)),
     });
 
-    console.log(response)
+    console.log(response);
     // remove the locally saved temporary file
     fs.unlinkSync(localFilePath);
 
@@ -57,8 +56,8 @@ const deleteFromCloudinary = async (folderPath, fileUrl) => {
     const publicId = fileUrl.split("/").pop().split(".")[0];
 
     // extract the file type
-   //  let fileType = publicId.split("-")[0];
-   //  fileType = fileType === "videoFile" ? "video" : "image";
+    //  let fileType = publicId.split("-")[0];
+    //  fileType = fileType === "videoFile" ? "video" : "image";
 
     // delete the file from cloudinary
     console.log(folderPath + publicId);

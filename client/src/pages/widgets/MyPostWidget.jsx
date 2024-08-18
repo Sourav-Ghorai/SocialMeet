@@ -41,30 +41,35 @@ function MyPostWidget({ picturePath }) {
   const medium = palette.neutral.medium;
 
   const handlePost = async () => {
-   setIsPosting(true);
-    const formData = new FormData();
-    formData.append("userId", _id);
-    formData.append("description", description);
+    try {
+      setIsPosting(true);
+      const formData = new FormData();
+      formData.append("userId", _id);
+      formData.append("description", description);
 
-    if (image) {
-      formData.append("picture", image);
-      formData.append("picturePath", image.name);
-    }
-    const { data } = await axios.post(
-      `${process.env.REACT_APP_API}/posts`,
-      formData,
-      {
-        headers: {
-          Authorization: token,
-        },
+      if (image) {
+        formData.append("picture", image);
+        formData.append("picturePath", image.name);
       }
-    );
-    const posts = data.posts;
-    dispatch(setPosts({ posts }));
-    setDescription("");
-    setIsImage(false);
-    setImage(null);
-    setIsPosting(false);
+      const { data } = await axios.post(
+        `${process.env.REACT_APP_API}/posts`,
+        formData,
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
+      const posts = data.posts;
+      dispatch(setPosts({ posts }));
+      setDescription("");
+      setIsImage(false);
+      setImage(null);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsPosting(false);
+    }
   };
 
   return (
@@ -173,7 +178,7 @@ function MyPostWidget({ picturePath }) {
             borderRadius: "3rem",
           }}
         >
-          {isPosting? 'Posting...' : 'POST'}
+          {isPosting ? "Posting..." : "POST"}
         </Button>
       </FlexBetween>
     </WidgetWrapper>

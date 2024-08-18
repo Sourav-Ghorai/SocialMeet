@@ -122,8 +122,6 @@ export const deletePost = async (req, res) => {
     if (!post) {
       res.status(404).json({ message: "Post not found" });
     }
-    //  await postModel.findByIdAndDelete(postId);
-    //  res.status(201).send({ message: "Deleted successfully" });
 
     const oldPost = post.picturePath;
     const postPath = "SocialMeet/Posts/";

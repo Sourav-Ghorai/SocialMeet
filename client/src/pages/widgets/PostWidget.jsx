@@ -101,7 +101,7 @@ function PostWidget({
             marginTop: "0.75rem",
             objectFit: "cover",
           }}
-          src={`${process.env.REACT_APP_API}/assets/${picturePath}`}
+          src={`${picturePath}`}
         />
       )}
       <FlexBetween mt="0.25rem">

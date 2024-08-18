@@ -4,7 +4,7 @@ const UserImage = ({ image, size = "60px" }) => {
   return (
     <Box width={size} height={size}>
       <img
-        src={`${process.env.REACT_APP_API}/assets/${image}`}
+        src={`${image}`}
         alt="user"
         width={size}
         height={size}

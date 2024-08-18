@@ -69,7 +69,7 @@ function Navbar() {
             },
           }}
         >
-          SocialMeet
+          Social
         </Typography>
         {isNonMobileScreen && (
           <FlexBetween

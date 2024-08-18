@@ -165,7 +165,7 @@ function MyPostWidget({ picturePath }) {
         )}
 
         <Button
-          disabled={!description}
+          disabled={!description || isPosting}
           onClick={handlePost}
           sx={{
             color: palette.background.alt,

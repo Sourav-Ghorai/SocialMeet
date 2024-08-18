@@ -57,12 +57,13 @@ const deleteFromCloudinary = async (folderPath, fileUrl) => {
     const publicId = fileUrl.split("/").pop().split(".")[0];
 
     // extract the file type
-    let fileType = publicId.split("-")[0];
-    fileType = fileType === "videoFile" ? "video" : "image";
+   //  let fileType = publicId.split("-")[0];
+   //  fileType = fileType === "videoFile" ? "video" : "image";
 
     // delete the file from cloudinary
+    console.log(folderPath + publicId);
     const response = await cloudinary.uploader.destroy(folderPath + publicId, {
-      resource_type: fileType,
+      resource_type: "image",
       invalidate: true,
     });
     // file has been deleted successfully

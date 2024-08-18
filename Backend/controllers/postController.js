@@ -1,6 +1,9 @@
 import postModel from "../models/postModel.js";
 import userModel from "../models/userModel.js";
-import { uploadOnCloudinary } from "../utils/cloudinary.js";
+import {
+  deleteFromCloudinary,
+  uploadOnCloudinary,
+} from "../utils/cloudinary.js";
 
 //Create posts
 export const createPostController = async (req, res) => {
@@ -45,7 +48,6 @@ export const createPostController = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
-
 
 //Get all the posts
 export const getAllPosts = async (req, res) => {
@@ -116,7 +118,24 @@ export const addComment = async (req, res) => {
 export const deletePost = async (req, res) => {
   try {
     const { postId } = req.params;
-    await postModel.findByIdAndDelete(postId);
+    const post = await postModel.findById(postId);
+    if (!post) {
+      res.status(404).json({ message: "Post not found" });
+    }
+    //  await postModel.findByIdAndDelete(postId);
+    //  res.status(201).send({ message: "Deleted successfully" });
+
+    const oldPost = post.picturePath;
+    const postPath = "SocialMeet/Posts/";
+
+    const deletedPost = await post.deleteOne();
+    if (!deletedPost) {
+      res.status(500).json({ message: "Error in deleting post" });
+    }
+
+    if(oldPost) {
+      await deleteFromCloudinary(postPath, oldPost);
+    }
     res.status(201).send({ message: "Deleted successfully" });
   } catch (error) {
     res.status(500).json({ message: error.message });
